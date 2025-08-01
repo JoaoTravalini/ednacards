@@ -1,0 +1,62 @@
+<div class="logo-upload">
+    <label class="upload-btn">
+        Inserir Logo
+        <input type="file" accept="image/*" (change)="onLogoSelected($event)" hidden />
+    </label>
+
+    <label class="upload-btn">
+        Grupo para editar cor:
+        <select [(ngModel)]="grupoSelecionado">
+            <option *ngFor="let grupo of gruposDeFrases; let i = index" [value]="i">Grupo {{ i + 1 }}</option>
+        </select>
+    </label>
+
+    <label class="upload-btn">
+        Cor de Fundo
+        <input type="color" [(ngModel)]="backgroundColors[grupoSelecionado]" (change)="salvarNoLocalStorage()" />
+        <input type="text" [(ngModel)]="backgroundColors[grupoSelecionado]" (change)="salvarNoLocalStorage()" />
+    </label>
+
+    <button class="upload-btn" (click)="adicionarNovaFolha()">Nova Página</button>
+
+    <label class="upload-btn" (click)="removerFolhaSelecionada()">
+        Remover grupo selecionado
+    </label>
+
+    <button class="upload-btn" (click)="baixarFolhasComoImagens()">Download das páginas</button>
+
+    <button class="upload-btn" (click)="resetarTudo()">Resetar Tudo</button>
+</div>
+
+<div class="folha" *ngFor="let grupo of gruposDeFrases; let gIndex = index"
+    [ngStyle]="{ 'background-color': backgroundColors[gIndex] }">
+
+    <div class="grade">
+        <div class="card" *ngFor="let frase of grupo; let i = index">
+            <!-- botão de edição -->
+            <button type="button" class="edit-btn" [ngClass]="{ left: i % 2 === 0, right: i % 2 === 1 }"
+                (click)="toggleEdicao(gIndex, i)" aria-label="Editar frase">
+                ✎
+            </button>
+
+            <!-- visualização / edição -->
+            <ng-container *ngIf="!editandoFrases[gIndex][i]; else editarFrase">
+                <div class="frase">{{ frase }}</div>
+            </ng-container>
+
+            <ng-template #editarFrase>
+                <input type="text" [(ngModel)]="textosEditando[gIndex][i]" (blur)="salvarFrase(gIndex, i)"
+                    (keyup.enter)="salvarFrase(gIndex, i)" class="frase-edit" autofocus />
+            </ng-template>
+
+            <div class="divider"></div>
+
+            <div class="logo-area">
+                <img *ngIf="logoDataUrl; else placeholder" [src]="logoDataUrl" />
+                <ng-template #placeholder>
+                    <div class="logo-placeholder"></div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

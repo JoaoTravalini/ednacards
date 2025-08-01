@@ -1,0 +1,137 @@
+.card, .frase {
+  font-family: 'Chocolate', sans-serif;
+}
+
+.folha {
+    width: 210mm;
+    height: 297mm;
+    margin: 20px auto;
+    margin-top: 80px;
+    padding: 10mm;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white; // será sobrescrito via [ngStyle]
+}
+
+.grade {
+    display: grid;
+    grid-template-columns: repeat(2, 9.266cm);
+    grid-template-rows: repeat(9, 2.758cm);
+    gap: 2mm;
+}
+
+.card {
+    width: 9.266cm;
+    height: 2.758cm;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    padding: 2mm;
+    box-sizing: border-box;
+    background-color: transparent;
+    justify-content: space-between;
+}
+
+.frase {
+    flex-grow: 1;
+    font-size: 0.8em;
+    text-align: left;
+}
+
+.logo-placeholder {
+    width: 1.8cm;
+    height: 100%;
+    background-color: #eee;
+    flex-shrink: 0;
+}
+
+.logo-upload {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upload-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1976d2;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    user-select: none;
+    gap: 8px;
+}
+
+.logo-area {
+    width: 1.8cm;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: none;
+}
+
+.logo-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.divider {
+    width: 1px;
+    height: 80%;
+    background-color: #000;
+    margin: 0 20px 0 10px;
+}
+
+.card {
+  position: relative;       
+}
+
+.edit-btn {
+  position: absolute;
+  top: -6px;                  
+  width: 20px;                
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  padding: 0;
+  background: #fff;
+  border: 1px solid #444;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 3;                 
+
+  &.left  { left: -30px; }     
+  &.right { right: -30px; }    
+}
+
+.frase-edit {
+  font-size: 0.8em;
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+button {
+    border: none;
+}
