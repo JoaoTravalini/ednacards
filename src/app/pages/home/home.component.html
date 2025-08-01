@@ -23,6 +23,12 @@
         Remover grupo selecionado
     </label>
 
+    <label class="upload-btn">
+        Cor da Fonte
+        <input type="color" [(ngModel)]="fontColors[grupoSelecionado]" (change)="salvarNoLocalStorage()" />
+        <input type="text" [(ngModel)]="fontColors[grupoSelecionado]" (change)="salvarNoLocalStorage()" />
+    </label>
+
     <button class="upload-btn" (click)="baixarFolhasComoImagens()">Download das páginas</button>
 
     <button class="upload-btn" (click)="resetarTudo()">Resetar Tudo</button>
@@ -32,7 +38,7 @@
     [ngStyle]="{ 'background-color': backgroundColors[gIndex] }">
 
     <div class="grade">
-        <div class="card" *ngFor="let frase of grupo; let i = index">
+        <div class="card" *ngFor="let frase of grupo; let i = index" [ngStyle]="{ color: fontColors[gIndex] }">
             <!-- botão de edição -->
             <button type="button" class="edit-btn" [ngClass]="{ left: i % 2 === 0, right: i % 2 === 1 }"
                 (click)="toggleEdicao(gIndex, i)" aria-label="Editar frase">

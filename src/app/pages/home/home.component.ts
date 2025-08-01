@@ -16,6 +16,7 @@ export class HomeComponent {
   logoDataUrl: string | null = null;
   backgroundColors: string[] = [];
   grupoSelecionado = 0;
+  fontColors: string[] = [];
 
   ngOnInit() {
     this.carregarDoLocalStorage();
@@ -28,6 +29,7 @@ export class HomeComponent {
         this.editandoFrases.push(new Array(grupo.length).fill(false));
         this.textosEditando.push([...grupo]);
         this.backgroundColors.push('#ffffff');
+        this.fontColors.push('#9A7E48'); 
       }
     }
   }
@@ -62,6 +64,7 @@ export class HomeComponent {
     this.editandoFrases.push(new Array(18).fill(false));
     this.textosEditando.push([...novaFolha]);
     this.backgroundColors.push('#ffffff');
+    this.fontColors.push('#9A7E48');
     this.salvarNoLocalStorage();
   }
 
@@ -72,6 +75,7 @@ export class HomeComponent {
       this.editandoFrases.splice(index, 1);
       this.textosEditando.splice(index, 1);
       this.backgroundColors.splice(index, 1);
+      this.fontColors.splice(index, 1);
       this.salvarNoLocalStorage();
 
       // Ajustar grupo selecionado
@@ -111,6 +115,7 @@ export class HomeComponent {
       gruposDeFrases: this.gruposDeFrases,
       textosEditando: this.textosEditando,
       backgroundColors: this.backgroundColors,
+      fontColors: this.fontColors,
       logoDataUrl: this.logoDataUrl,
     };
     localStorage.setItem('folhasData', JSON.stringify(dados));
@@ -124,6 +129,7 @@ export class HomeComponent {
         this.gruposDeFrases = dados.gruposDeFrases || [];
         this.textosEditando = dados.textosEditando || [];
         this.backgroundColors = dados.backgroundColors || [];
+        this.fontColors = dados.fontColors || [];
         this.logoDataUrl = dados.logoDataUrl || null;
 
         // Gerar estrutura de edição para cada grupo
@@ -144,6 +150,7 @@ export class HomeComponent {
     this.editandoFrases = [];
     this.textosEditando = [];
     this.backgroundColors = [];
+    this.fontColors = [];
     this.logoDataUrl = null;
     this.grupoSelecionado = 0;
 
@@ -153,6 +160,7 @@ export class HomeComponent {
       this.editandoFrases.push(new Array(grupo.length).fill(false));
       this.textosEditando.push([...grupo]);
       this.backgroundColors.push('#ffffff');
+      this.fontColors.push('#9A7E48');
     }
 
     this.salvarNoLocalStorage();
